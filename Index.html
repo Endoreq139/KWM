@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KMW – Produkcja, montaż, sprzedaż | Rolety, Moskitiery, Bramy</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f7f7;
+    color: #18305b;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .hero-bg {
+    background: linear-gradient(120deg, #193a6b 0%, #c8b45c 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+    padding: 60px 20px 40px;
+    text-align: center;
+  }
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0 0;}
+    50% { background-position: 100% 100%;}
+  }
+  .hero-title, .hero-subtitle, .cta-btn {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  .hero-title { animation-delay: 0.2s; font-size: 2.7rem; font-weight: bold; margin: 0;}
+  .hero-subtitle { animation-delay: 0.4s; font-size: 1.3rem; margin: 12px auto 18px; max-width: 600px;}
+  .cta-btn { animation-delay: 0.6s;}
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .cta-btn {
+    box-shadow: 0 0 0 rgba(200,180,90,0.2);
+    transition: box-shadow 0.4s, transform 0.2s;
+    padding: 0.9em 2.5em;
+    border-radius: 0.7em;
+    border: none;
+    background: #193a6b;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1em;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+  }
+  .cta-btn:hover, .cta-btn:focus {
+    box-shadow: 0 0 22px 2px rgba(200,180,90,0.35);
+    transform: scale(1.05);
+  }
+  /* Produktowy wizualizator z kalkulatorem */
+  .visualizer {
+    max-width: 520px;
+    margin: 0 auto 40px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 26px rgba(45,68,108,0.1);
+    text-align: center;
+  }
+  .visualizer h2 {
+    color: #193a6b;
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+  select, input {
+    font-size: 1em;
+    padding: 10px 14px;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-align: left;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #193a6b;
+  }
+  .product-info {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 14px;
+    min-height: 60px;
+  }
+  .product-price {
+    color: #c8b45c;
+    font-weight: 700;
+    margin-top: 8px;
+    font-size: 1.3rem;
+  }
+  /* Formularz kontaktowy */
+  .contact-section {
+    max-width: 480px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 24px 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 26px rgba(45,68,108,0.1);
+  }
+  .contact-section h2 {
+    color: #193a6b;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  input[type="text"], input[type="email"], textarea {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    resize: vertical;
+  }
+  textarea {
+    min-height: 80px;
+  }
+  button.submit-btn {
+    background-color: #193a6b;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button.submit-btn:hover {
+    background-color: #0f244a;
+  }
+  .form-message {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 12px;
+    color: #c8b45c;
+  }
+  /* Chat WhatsApp */
+  .whatsapp-btn {
+    background-color: #25d366;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 20px auto;
+    transition: background-color 0.3s ease;
+  }
+  .whatsapp-btn:hover {
+    background-color: #1ebe57;
+  }
+  /* Godziny otwarcia */
+  .hours {
+    max-width: 280px;
+    margin: 40px auto 50px;
+    background: #193a6b;
+    border-radius: 14px;
+    color: white;
+    padding: 24px 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .hours h3 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+  }
+  .hours p {
+    margin: 4px 0;
+    font-size: 1.1rem;
+  }
+  /* Stopka */
+  .kontakt-footer {
+    background: #193a6b;
+    color: #fff;
+    text-align: center;
+    padding: 24px 10px;
+    font-size: 1em;
+    border-radius: 0 0 12px 12px;
+  }
+  @media (max-width: 600px){
+    .hero-title { font-size: 2rem;}
+    .hero-subtitle { font-size: 1rem;}
+    .visualizer, .contact-section, .hours {padding: 18px 12px;}
+  }
+</style>
+</head>
+<body>
+  <section class="hero-bg">
+    <h1 class="hero-title">KMW – Systemy Osłon</h1>
+    <p class="hero-subtitle">Produkcja, montaż, sprzedaż: rolety pionowe, materiałowe, moskitiery, szlabany, bramy, rolokasety, napędy mechaniczne i zdalne sterowanie</p>
+    <a href="tel:+48413441480" class="cta-btn" title="Zadzwoń do KMW">(041) 344-14-80 – Zadzwoń do nas</a>
+  </section>
+
+  <section class="visualizer" aria-label="Wizualizator produktów">
+    <h2>Wybierz produkt i wprowadź wymiary</h2>
+    <select id="productSelect" aria-describedby="productDesc productPrice">
+      <option value="" disabled selected>Wybierz produkt</option>
+      <option value="rolety">Pionowe rolety materiałowe</option>
+      <option value="moskitiery">Moskitiery</option>
+      <option value="szlabany">Szlabany</option>
+      <option value="bramy">Bramy</option>
+      <option value="rolokasety">Rolokasety</option>
+      <option value="napedy">Napędy mechaniczne i zdalne sterowanie</option>
+    </select>
+    <label for="widthInput">Szerokość (w metrach):</label>
+    <input type="number" id="widthInput" min="0" step="0.01" placeholder="np. 1.2" aria-label="Szerokość w metrach" />
+    <label for="heightInput">Wysokość (w metrach):</label>
+    <input type="number" id="heightInput" min="0" step="0.01" placeholder="np. 1.5" aria-label="Wysokość w metrach" />
+    <button class="cta-btn" id="calcBtn" aria-label="Oblicz orientacyjną cenę">Oblicz cenę</button>
+    <div class="product-info" id="productDesc" aria-live="polite" role="region"></div>
+    <div class="product-price" id="productPrice" aria-live="polite" role="region"></div>
+  </section>
+
+  <section class="hours" aria-label="Godziny otwarcia">
+    <h3>Godziny otwarcia</h3>
+    <p>Poniedziałek - Piątek: 8:00 – 17:00</p>
+    <p>Sobota: 9:00 – 13:00</p>
+    <p>Niedziela: Nieczynne</p>
+  </section>
+
+  <section class="contact-section" aria-label="Formularz kontaktowy">
+    <h2>Skontaktuj się z nami</h2>
+    <form id="contactForm" action="javascript:void(0)" novalidate>
+      <input type="text" id="name" name="name" placeholder="Imię i nazwisko" required aria-required="true" />
+      <input type="email" id="email" name="email" placeholder="Email" required aria-required="true" />
+      <textarea id="message" name="message" placeholder="Twoja wiadomość" required aria-required="true"></textarea>
+      <button type="submit" class="submit-btn">Wyślij</button>
+    </form>
+    <div class="form-message" id="formMessage" role="alert" aria-live="assertive"></div>
+    <a href="https://wa.me/48413441480" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Kontakt przez WhatsApp">📱 Napisz do nas na WhatsApp</a>
+  </section>
+
+  <section class="kontakt-footer" role="contentinfo">
+    <strong>KMW</strong> | Tel.: (041) 344-14-80 | Fax: (041) 344-33-77<br />
+    Kompleksowa obsługa: produkcja, montaż, sprzedaż – skontaktuj się!
+  </section>
+
+  <script>
+    const products = {
+      rolety: { desc: "Rolety pionowe materiałowe – nowoczesne tkaniny, łatwy montaż i estetyczny wygląd.", unitPrice: 150 },
+      moskitiery: { desc: "Moskitiery chroniące przed owadami, proste w obsłudze, trwałe.", unitPrice: 80 },
+      szlabany: { desc: "Szlabany – automatyczne i bezpieczne rozwiązania.", unitPrice: 2000, fixedPrice: true },
+      bramy: { desc: "Bramy segmentowe i rolowane – profesjonalny montaż i jakość.", unitPrice: 3500, fixedPrice: true },
+      rolokasety: { desc: "Rolokasety zapewniające kompaktową ochronę i estetykę.", unitPrice: 180 },
+      napedy: { desc: "Napędy mechaniczne i zdalne sterowanie – wygoda i automatyzacja.", unitPrice: 700, fixedPrice: true }
+    };
+
+    const select = document.getElementById('productSelect');
+    const descBox = document.getElementById('productDesc');
+    const priceBox = document.getElementById('productPrice');
+    const widthInput = document.getElementById('widthInput');
+    const heightInput = document.getElementById('heightInput');
+    const calcBtn = document.getElementById('calcBtn');
+
+    select.addEventListener('change', () => {
+      const val = select.value;
+      if(val && products[val]) {
+        descBox.textContent = products[val].desc;
+        priceBox.textContent = '';
+      } else {
+        descBox.textContent = '';
+        priceBox.textContent = '';
+      }
+    });
+
+    calcBtn.addEventListener('click', () => {
+      const val = select.value;
+      if(!val) {
+        alert('Proszę wybrać produkt.');
+        return;
+      }
+      const product = products[val];
+      let width = parseFloat(widthInput.value);
+      let height = parseFloat(heightInput.value);
+
+      if(product.fixedPrice){
+        priceBox.textContent = "Orientacyjna cena: od " + product.unitPrice + " zł / szt.";
+        return;
+      }
+
+      if(isNaN(width) || width <= 0 || isNaN(height) || height <= 0){
+        alert('Proszę podać poprawne wartości szerokości i wysokości (większe od 0).');
+        return;
+      }
+
+      let area = width * height;
+      let totalPrice = area * product.unitPrice;
+      priceBox.textContent = `Orientacyjna cena: ${totalPrice.toFixed(2)} zł (powierzchnia: ${area.toFixed(2)} m²)`;
+    });
+
+    // Formularz kontaktowy (prosta walidacja i komunikat)
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formMessage.textContent = '';
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+
+      if(!name || !email || !message){
+        formMessage.style.color = 'red';
+        formMessage.textContent = 'Proszę wypełnić wszystkie pola.';
+        return;
+      }
+      if(!validateEmail(email)){
+        formMessage.style.color = 'red';
+        formMessage.textContent = 'Proszę podać poprawny adres email.';
+        return;
+      }
+
+      // Tu można dodać wysyłkę formularza (backend)
+      formMessage.style.color = 'green';
+      formMessage.textContent = 'Dziękujemy za wiadomość! Skontaktujemy się wkrótce.';
+      contactForm.reset();
+    });
+
+    function validateEmail(email) {
+      const re = /^[^s@]+@[^s@]+.[^s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+  </script>
+</body>
+</html>
